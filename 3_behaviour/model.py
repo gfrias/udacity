@@ -146,6 +146,10 @@ def evaluate_model(Xs, ys):
 		metric_value = metrics[metric_i]
 		print('{}: {}'.format(metric_name, metric_value))
 
+def mirror(img):
+	rimg=img.copy()
+	return cv2.flip(img,1)
+
 SIZE = 10000
 log = load_log('data/driving_log.csv');
 X_train, y_train = load_data(log, TRAINING_SET)
@@ -153,6 +157,11 @@ X_train, y_train = shuffle(X_train, y_train)
 X_train, y_train = X_train[:SIZE], y_train[:SIZE]
 print(len(X_train))
 X_train = np.asarray([load_image(filename) for filename in X_train])
+X_train2 = np.asarray([mirror(img) for img in X_train])
+X_train = np.concatenate((X_train, X_train2), axis=0)
+
+y_train2 = [-y for y in y_train]
+y_train = np.concatenate((y_train, y_train2), axis=0)
 
 X_normalized = normalize(to_grayscale(X_train))
 model = build_model3()
