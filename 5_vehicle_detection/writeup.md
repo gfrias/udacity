@@ -10,13 +10,12 @@ The goals / steps of this project are the following:
 * Estimate a bounding box for vehicles detected.
 
 [//]: # (Image References)
-[image1]: ./examples/car_not_car.png
-[image2]: ./examples/HOG_example.jpg
-[image3]: ./examples/sliding_windows.jpg
-[image4]: ./examples/sliding_window.jpg
-[image5]: ./examples/bboxes_and_heat.png
-[image6]: ./examples/labels_map.png
-[image7]: ./examples/output_bboxes.png
+[image1]: ./writeup_files/car_notcar.jpg
+[image2]: ./writeup_files/car_notcar_hog.jpg
+
+[image5]: ./writeup_files/images_heatmaps.jpg
+[image6]: ./writeup_files/labels.png
+[image7]: ./writeup_files/final_box.png
 [video1]: ./project_video.out.mp4
 [video2]: ./test_video.out.mp4
 
@@ -62,13 +61,11 @@ It's important to note that all the training images are png files, so all the va
 I decided to search car images using the sliding window technique, I took a default window of 64x64 pixels, and scanned with 0.5 overlapping that provided good results from a strip going from y_start = 350 to y_end = 650.
 I decided to use different scales: 32x32 (0.5), 64x64 (1) and 128x128 (2). In case for the smallest one, since the number of windows grows quite rapidely, I restricted them to close to the horizon (350 < y < 450).
 
-![alt text][image3]
 
 ####2. Show some examples of test images to demonstrate how your pipeline is working.  What did you do to optimize the performance of your classifier?
 
-Ultimately I searched on three scales using YCrCb 3-channel HOG features plus spatially binned color and histograms of color in the feature vector, which provided a nice result. I search through a strip as described on the item before. Here are some example images:
+Ultimately I searched on three scales using YCrCb 3-channel HOG features plus spatially binned color and histograms of color in the feature vector, which provided a nice result. I search through a strip as described on the item before
 
-![alt text][image4]
 ---
 
 ### Video Implementation
@@ -89,7 +86,7 @@ Here's an example result showing the heatmap from a series of frames of video, t
 
 ![alt text][image5]
 
-### Here is the output of `scipy.ndimage.measurements.label()` on the integrated heatmap from all six frames:
+### Here is the output of `scipy.ndimage.measurements.label()` on the heatmap from the last frame:
 ![alt text][image6]
 
 ### Here the resulting bounding boxes are drawn onto the last frame in the series:
