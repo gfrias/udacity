@@ -103,14 +103,14 @@ void ParticleFilter::dataAssociation(std::vector<LandmarkObs> predicted, std::ve
 
     for (int i = 0; i < observations.size(); i++) {
         int min_idx = -1;
-        double min_dist = MAXFLOAT;
+        double min_dist = 0;
 
         LandmarkObs obs = observations[i];
         for (int j = 0; j < predicted.size(); j++) {
             LandmarkObs pred = predicted[j];
 
             double d = dist(obs.x, obs.y, pred.x, pred.y);
-            if (d < min_dist) {
+            if (min_idx < 0 || d < min_dist) {
                 min_dist = d;
                 min_idx = j;
             }
