@@ -177,7 +177,7 @@ int main(int argc, char* argv[])
   
   uWS::Hub h;
   
-  static bool do_twiddle = false;  //change this to train the PID or run the car
+  static bool do_twiddle = true;  //change this to train the PID or run the car
   int ret = check_params(do_twiddle, argc, argv);
   if (ret != 0) return ret;
   
